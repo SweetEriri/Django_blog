@@ -1,0 +1,29 @@
+{% for contact in contacts %}
+    {# Each "contact" is a Contact model object. #}
+     {# 每个contact 都是一个Contact 对象 可以直接获取这个模型对应字段的值  #}
+    {{ contact.full_name|upper }}
+
+    ...
+{% endfor %}
+
+{# 分页 #}
+<div class="pagination">
+    <span class="step-links">
+        {% if contacts.has_previous %}
+            {# 如果有上一页，点击进入上一页 #}
+            <a href="?page=1">&laquo; first</a>
+            <a href="?page={{ contacts.previous_page_number }}">previous</a>
+        {% endif %}
+
+        <span class="current">
+            {# 显示当前在第几页 #}
+            Page {{ contacts.number }} of {{ contacts.paginator.num_pages }}.
+        </span>
+
+        {% if contacts.has_next %}
+         {# 如果有下一页，点击进入下一页 #}
+            <a href="?page={{ contacts.next_page_number }}">next</a>
+            <a href="?page={{ contacts.paginator.num_pages }}">last &raquo;</a>
+        {% endif %}
+    </span>
+</div>
