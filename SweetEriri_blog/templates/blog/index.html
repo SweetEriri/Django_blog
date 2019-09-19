@@ -1,5 +1,4 @@
 {% extends 'base.html' %}
-
 {% block main %}
     {% for post in post_list %}
         <article class="post post-{{ post.pk }}">
@@ -21,7 +20,7 @@
             <div class="entry-content clearfix">
                 <p>{{ post.excerpt }}...</p>
                 <div class="read-more cl-effect-14">
-                    <a href="{{ post.get_absolute_url }}" class="more-link">继续阅读 <span class="meta-nav">→</span></a>
+                    <a href="{{ post.get_absolute_url }}" class="more-link">阅读 <span class="meta-nav">→</span></a>
                 </div>
             </div>
         </article>
@@ -30,11 +29,11 @@
     {% endfor %}
 
 
-        {% load pagination_tags %}
+<!--         {% load pagination_tags %}
         {% for blog in blogs %}
             {{blog.name}}
         {% endfor %}
-        {% paginate %}
-<!-- {% paginate using "blog/my_pagination.html" %} -->
+        {% paginate %} -->
+{% paginate using "blog/my_pagination.html" %}
 
 {% endblock main %}

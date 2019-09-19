@@ -3,9 +3,11 @@ import markdown
 from django.shortcuts import render, get_object_or_404
 from django.views.generic import ListView, DetailView
 from comments.forms import CommentForm
-from .models import Post, Category
+from .models import Post, Category, Tag
 from django.core.paginator import Paginator
 from django.shortcuts import render
+from django.db.models import Q
+
 
 def index(request):
     post_list = Post.objects.all()
@@ -16,7 +18,7 @@ class IndexView(ListView):
     model = Post
     template_name = 'blog/index.html'
     context_object_name = 'post_list'
-    paginate_by = 2
+    paginate_by = 4
 
 def listing(request):
     contact_list = Contacts.obhects.all()  # 得到一个QuerySet
@@ -111,3 +113,9 @@ class CategoryView(ListView):
     def get_queryset(self):
         cate = get_object_or_404(Category, pk=self.kwargs.get('pk'))
         return super(CategoryView, self).get_queryset().filter(category=cate)
+
+class TagView(IndexView):
+    def get_queryset(self):
+        tag = get_object_or_404(Tag, pk=self.kwargs.get('pk'))
+        return super(TagView, self).get_queryset().filter(tags=tag)
+

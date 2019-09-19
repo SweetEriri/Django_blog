@@ -1,8 +1,12 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
 <style>
-    ul.pagination {
+ul.pagination {
     display: inline-block;
     padding: 0;
-    margin: 0;
+    margin: 500;
 }
 
 ul.pagination li {display: inline;}
@@ -13,44 +17,22 @@ ul.pagination li a {
     padding: 8px 16px;
     text-decoration: none;
     transition: background-color .3s;
-    border: 1px solid #ddd;
-}
-
-.pagination li:first-child a {
-    border-top-left-radius: 5px;
-    border-bottom-left-radius: 5px;
-}
-
-.pagination li:last-child a {
-    border-top-right-radius: 5px;
-    border-bottom-right-radius: 5px;
 }
 
 ul.pagination li a.active {
-    background-color: #4CAF50;
-    color: white;
-    border: 1px solid #4CAF50;
+    background-color: #A9A9A9;
 }
+
 ul.pagination li a:hover:not(.active) {background-color: #ddd;}
-
-.pagination > .disabled > a,
-.pagination > .disabled > a:hover,
-.pagination > .disabled > a:focus {
-  color: #777;
-  cursor: not-allowed;
-  background-color: #fff;
-  border-color: #ddd;
-}
-
 </style>
+</head>
+<body>
+​
+
 {% if is_paginated %}
 {% load i18n %}
+    <nav style="text-align: center;">
     <ul class="pagination">
-    {% if page_obj.has_previous %}
-        <li><a href="?page{{ page_suffix }}={{ page_obj.previous_page_number }}{{ getvars }}{{ hashtag }}">«</a></li>
-        {% else %}
-        <li  class="disabled" ><a href="javascript:volid(0);">«</a></li>
-    {% endif %}
     {% for page in pages %}
         {% if page %}
             {% ifequal page page_obj.number %}
@@ -62,10 +44,6 @@ ul.pagination li a:hover:not(.active) {background-color: #ddd;}
             <li><a href="#">...</a></li>
         {% endif %}
     {% endfor %}
-    {% if page_obj.has_next %}
-        <li><a href="?page{{ page_suffix }}={{ page_obj.next_page_number }}{{ getvars }}{{ hashtag }}">&raquo;</a></li>
-        {% else %}
-        <li class="disabled"><a href="javascript:volid(0);" >&raquo;</a></li>
-    {% endif %}
+
     </ul>
 {% endif %}

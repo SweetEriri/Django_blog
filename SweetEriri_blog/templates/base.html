@@ -5,6 +5,7 @@
 <head>
     <title>SweetEriri</title>
 
+
     <!-- meta -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -22,6 +23,15 @@
     <script src="{% static 'js/pace.min.js' %}"></script>
     <script src="{% static 'js/modernizr.custom.js' %}"></script>
 </head>
+
+<body>
+    <div class="container">
+      <div id="bg">
+        <img src="{% static 'login.jpg' %}" alt="">
+      </div>
+      <div>
+       </div>
+
 
 <body>
 <div class="container">
@@ -50,19 +60,13 @@
                     </div><!-- /.navbar-collapse -->
                 </nav>
                 <div id="header-search-box">
-                    <a id="search-menu" href="#"><span id="search-icon" class="ion-ios-search-strong"></span></a>
                     <div id="search-form" class="search-form">
-                        <form role="search" method="get" id="searchform" action="#">
-                            <input type="search" placeholder="搜索" required>
-                            <button type="submit"><span class="ion-ios-search-strong"></span></button>
-                        </form>
                     </div>
                 </div>
             </div><!-- col-md-8 -->
         </div>
     </header>
 </div>
-
 
 <div class="content-body">
     <div class="container">
@@ -108,15 +112,29 @@
   <ul>
     {% for category in category_list %}
     <li>
-      <a href="#">{{ category.name }} <span class="post-count">{% get_categories as category_list.count %}</span></a>
+      <a href="{% url 'blog:category' category.pk %}">{{ category.name }}
+      <span class="post-count">{% get_categories as category_list.count %}</span></a>
     </li>
     {% empty %}
     暂无分类！
     {% endfor %}
   </ul>
 
+                <div class="widget widget-tag-cloud">
+                    <h3 class="widget-title">标签云</h3>
+                    {% get_tags as tag_list %}
+                        {% for tag in tag_list %}
+                            <li>
+                                <a href="{% url 'blog:tag' tag.pk %}">{{ tag.name }}</a>
+                            </li>
+                        {% empty %}
+                            暂无标签！
+                        {% endfor %}
+                </div>
+
+
                 <div class="rss">
-                    <a href=""><span class="ion-social-rss-outline"></span> RSS 订阅</a>
+                    <a href="{% url 'rss' %}"><span class="ion-social-rss-outline"></span> RSS 订阅</a>
                 </div>
         </div>
     </div>

@@ -18,6 +18,7 @@ class Tag(models.Model):
 class Post(models.Model):
     created_time = models.DateTimeField()
     views = models.PositiveIntegerField(default=0)
+    body = models.TextField()
     def __str__(self):
         return self.title
     def increase_views(self):
@@ -32,9 +33,9 @@ class Post(models.Model):
 #    created_time = models.DateTimeField()
     modified_time = models.DateTimeField()
     excerpt = models.CharField(max_length=200, blank=True)
-    category = models.ForeignKey(Category)
+    category = models.ForeignKey(Category, on_delete=models.PROTECT)
     tags = models.ManyToManyField(Tag, blank=True)
-    author = models.ForeignKey(User)
+    author = models.ForeignKey(User, on_delete=models.PROTECT)
 
     def save(self, *args, **kwargs):
         if not self.excerpt:
