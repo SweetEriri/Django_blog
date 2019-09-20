@@ -1,6 +1,6 @@
 import markdown
 
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, render_to_response
 from django.views.generic import ListView, DetailView
 from comments.forms import CommentForm
 from .models import Post, Category, Tag
@@ -123,3 +123,15 @@ def category(request, pk):
     cate = get_object_or_404(Category, pk=pk)
     post_list = Post.objects.filter(category=cate).order_by('-created_time')
     return render(request, 'blog/index.html', context={'post_list': post_list})
+
+
+def page_not_found(request, exception, template_name='404.html'):
+	return render(request, template_name)
+
+
+def page_error(request, exception, template_name='500.html'):
+    return render(request, template_name)
+
+
+def resources_not_available(request, exception, template_name='403.html'):
+    return render(request, template_name)

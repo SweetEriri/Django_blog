@@ -1,5 +1,9 @@
 from django.conf.urls import url
 from . import views
+from django.conf import settings
+from django.views import static
+from django.conf.urls import handler404, handler500, handler403
+from .views import page_not_found, page_error, resources_not_available
 
 app_name = 'blog'
 urlpatterns = [
@@ -10,3 +14,9 @@ urlpatterns = [
     url(r'^tag/(?P<pk>[0-9]+)/$', views.TagView.as_view(), name='tag'),
 ]
 
+# 404 页面找不到
+handler404 = page_not_found
+# 500 服务器出错
+handler500 = page_error
+# 资源不可用
+handler403 = resources_not_available

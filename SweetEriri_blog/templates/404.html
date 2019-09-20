@@ -1,0 +1,71 @@
+{% load staticfiles %}
+<html>
+	<head>
+        <meta charset="UTF-8">
+
+		<link href='//fonts.googleapis.com/css?family=Lato:100' rel='stylesheet' type='text/css'>
+
+
+		<style>
+			body {
+				margin: 0;
+				padding: 0;
+				width: 100%;
+				height: 100%;
+				color: #B0BEC5;
+				display: table;
+				font-weight: 500;
+				font-family: 'Lato';
+			}
+
+			.container {
+				text-align: center;
+				display: table-cell;
+				vertical-align: text-bottom;
+			}
+
+			.content {
+				text-align: center;
+				display: inline-block;
+			}
+
+			.title {
+				font-size: 60px;
+				margin-bottom: 100px;
+			}
+
+			.bottom{
+				font-size: 40px;
+				margin-bottom: 40px;
+			}
+
+
+            a:link {
+            font-size: 40px;
+            color: #B0BEC5;
+            text-decoration: none;
+            }
+            a:visited {
+            font-size: 40px;
+            color: #B0BEC5;
+            text-decoration: none;
+            }
+            a:hover {
+            font-size: 40px;
+            color: #B0BEC5;
+            text-decoration: none;
+            }
+
+		</style>
+	</head>
+	<body>
+		<div class="container">
+			<div class="content">
+                <img src="{% static '404.jpg' %}" border="0" height="500" />
+				<div class="title">404 很抱歉，您查看的页面找不到了！</div>
+                <div class="bottom"><a href="{% url 'blog:index' %}">返回首页</a></div>
+			</div>
+		</div>
+	</body>
+</html>
+
