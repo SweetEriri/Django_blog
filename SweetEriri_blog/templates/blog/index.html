@@ -19,9 +19,6 @@
             </header>
             <div class="entry-content clearfix">
                 <p>{{ post.excerpt }}...</p>
-                <div class="read-more cl-effect-14">
-                    <a href="{{ post.get_absolute_url }}" class="more-link">阅读 <span class="meta-nav">→</span></a>
-                </div>
             </div>
         </article>
     {% empty %}
@@ -37,3 +34,5 @@
 {% paginate using "blog/my_pagination.html" %}
 
 {% endblock main %}
+
+

@@ -22,7 +22,34 @@
     <script src="{% static 'js/bootstrap.min.js' %}"></script>
     <script src="{% static 'js/pace.min.js' %}"></script>
     <script src="{% static 'js/modernizr.custom.js' %}"></script>
+    <script src="{% static 'js/L2Dwidget.min.js' %}"></script>
+
 </head>
+
+<script type="text/javascript">
+  L2Dwidget.init({
+    model: {
+      jsonPath: '/static/js/tororo/assets/tororo.model.json',
+    },
+    display: {
+      superSample: 2,
+      width: 150,
+      height: 150,
+      position: 'right',
+      hOffset: 0,
+      vOffset: 0,
+    },
+    mobile: {
+      show: true,
+      scale: 1,
+      motion: true,
+    },
+    react: {
+      opacityDefault: 0.8,
+      opacityOnHover: 0.2,
+    }
+  })
+</script>
 
 <body>
     <div class="container">
@@ -92,19 +119,20 @@
   </ul>
 </div>
 
-<div class="widget widget-archives">
-  <h3 class="widget-title">归档</h3>
-  {% archives as date_list %}
-  <ul>
-    {% for date in date_list %}
-    <li>
-      <a href="#">{{ date.year }} 年 {{ date.month }} 月</a>
-    </li>
-    {% empty %}
-    暂无归档！
-    {% endfor %}
-  </ul>
-</div>
+                <div class="widget widget-archives">
+                    <h3 class="widget-title">归档</h3>
+                    {% archives as date_list %}
+                    <ul>
+                        {% for date in date_list %}
+                            <li>
+                                <a href="{% url 'blog:archives' date.year date.month %}">{{ date.year }}
+                                    年 {{ date.month }} 月</a>
+                            </li>
+                        {% empty %}
+                            暂无归档！
+                        {% endfor %}
+                    </ul>
+                </div>
 
   <div class="widget widget-category">
   <h3 class="widget-title">分类</h3>
